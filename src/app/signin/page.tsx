@@ -2,8 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
+import { values } from 'lodash';
+import { AuthApi } from '@/api/auth/auth.api';
+import { useRouter } from 'next/navigation';
 export default function LoginPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -11,8 +14,19 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: 로그인 로직 구현
-    console.log(formData);
+
+    if (values(formData).some((value) => !value)) {
+      return alert('모든 항목을 입력해주세요.');
+    }
+
+    try {
+      await AuthApi.signin(formData);
+      alert('로그인이 완료되었습니다.');
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+      alert('로그인에 실패했습니다.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

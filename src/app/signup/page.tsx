@@ -2,8 +2,12 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { values } from 'lodash';
+import { AuthApi } from '@/api/auth/auth.api';
+import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,8 +16,19 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: 회원가입 로직 구현
-    console.log(formData);
+
+    if (values(formData).some((value) => !value)) {
+      return alert('모든 항목을 입력해주세요.');
+    }
+
+    try {
+      await AuthApi.signup(formData);
+      alert('회원가입이 완료되었습니다.');
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+      alert('회원가입에 실패했습니다.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
