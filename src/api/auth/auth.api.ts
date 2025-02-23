@@ -11,4 +11,14 @@ export class AuthApi {
     const { data } = await axios.post(`${API_URL}/auth/signin`, dto);
     return data;
   }
+
+  static async googleSignin() {
+    const { data } = await axios.get(`${API_URL}/auth/signin/google`);
+    return data;
+  }
+
+  static async kakaoSignin() {
+    const { data } = await axios.get(`${API_URL}/auth/signin/kakao`);
+    return data;
+  }
 }
