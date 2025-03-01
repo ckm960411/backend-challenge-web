@@ -10,7 +10,8 @@ export default function KakaoCallbackPage() {
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
     if (accessToken) {
-      window.localStorage.setItem('accessToken', accessToken);
+      // 쿠키에 토큰 저장 (HttpOnly 쿠키는 서버에서 설정해야 함)
+      document.cookie = `accessToken=${accessToken}; path=/`;
       alert('카카오 로그인이 완료되었습니다.');
     } else {
       alert('카카오 로그인에 실패했습니다.');
