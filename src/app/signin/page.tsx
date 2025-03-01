@@ -6,6 +6,7 @@ import { values } from 'lodash';
 import { AuthApi } from '@/api/auth/auth.api';
 import { useRouter } from 'next/navigation';
 import { API_URL } from '@/api/api';
+
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -21,7 +22,8 @@ export default function LoginPage() {
     }
 
     try {
-      await AuthApi.signin(formData);
+      const { accessToken } = await AuthApi.signin(formData);
+      window.localStorage.setItem('accessToken', accessToken);
       alert('로그인이 완료되었습니다.');
       router.push('/');
     } catch (error) {
