@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { UserSync } from '@/components/common/UserSync';
+import { baseURL } from '@/api/api';
 
 async function getUser() {
   const cookieStore = await cookies();
@@ -10,7 +11,7 @@ async function getUser() {
   if (!accessToken) return null;
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/me`, {
+    const response = await fetch(`${baseURL}/user/me`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
