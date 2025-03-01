@@ -8,7 +8,10 @@ export class AuthApi {
   }
 
   static async signin(dto: { email: string; password: string }) {
-    const { data } = await axios.post(`${API_URL}/auth/signin`, dto);
+    const { data } = await axios.post<{ accessToken: string }>(
+      `${API_URL}/auth/signin`,
+      dto
+    );
     return data;
   }
 
