@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { values } from 'lodash';
 import { AuthApi } from '@/api/auth/auth.api';
 import { useRouter } from 'next/navigation';
-import { API_URL } from '@/api/api';
+import { baseURL } from '@/api/api';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -112,7 +112,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => {
-                window.location.href = `${API_URL}/auth/signin/google`;
+                window.location.href = `${baseURL}/auth/signin/google`;
               }}
               className="w-full px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
@@ -122,7 +122,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => {
-                window.location.href = `${API_URL}/auth/signin/kakao`;
+                window.location.href = `${baseURL}/auth/signin/kakao`;
               }}
               className="w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-[#FEE500] hover:bg-[#FDD800] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEE500]"
             >
