@@ -44,6 +44,7 @@ export default async function Home() {
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">Auth 회원가입/로그인 구현</li>
           <li>소셜로그인 구현 구글/카카오</li>
+          <li>이메일 인증 후 비밀번호 변경</li>
         </ol>
 
         <AuthSection />

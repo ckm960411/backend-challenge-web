@@ -20,4 +20,27 @@ export class AuthApi {
     const { data } = await get(`/auth/signin/kakao`);
     return data;
   }
+
+  static async requestPasswordReset(dto: {
+    email: string;
+    currentPassword: string;
+  }) {
+    return post<void>(`/auth/password/reset-request`, dto);
+  }
+
+  static async verifyPasswordCode(dto: { email: string; code: string }) {
+    const { data } = await post<{ isValid: boolean }>(
+      `/auth/password/verify-code`,
+      dto
+    );
+    return data;
+  }
+
+  static async resetPassword(dto: {
+    email: string;
+    code: string;
+    newPassword: string;
+  }) {
+    return post<void>(`/auth/password/reset`, dto);
+  }
 }
