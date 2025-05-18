@@ -4,23 +4,18 @@ import { CreateIpadProductReqDto } from './dto/request/create-ipad-product.req.d
 import { CreateIphoneProductReqDto } from './dto/request/create-iphone-product.req.dto';
 import { CreateMacProductReqDto } from './dto/request/create-mac-product.req.dto';
 import { FindAllProductsReqQuery } from './dto/request/find-all-products.req.query';
-import { IPadProduct } from './dto/response/ipad-product.interface';
-import { IPhoneProduct } from './dto/response/iphone-product.interface';
-import { MacProduct } from './dto/response/mac-product.interface';
+import { GetProductResDto } from './dto/response/get-product.res.dto';
 
 export class ProductApi {
   static async findAll(params: FindAllProductsReqQuery) {
-    const { data } = await get<IPhoneProduct | IPadProduct | MacProduct>(
-      '/product',
-      {
-        params,
-      }
-    );
+    const { data } = await get<GetProductResDto[]>('/product', {
+      params,
+    });
     return data;
   }
 
   static async findAllMac(params?: Omit<FindAllProductsReqQuery, 'category'>) {
-    const { data } = await get<MacProduct[]>('/product', {
+    const { data } = await get<GetProductResDto[]>('/product', {
       params: { category: ProductCategoryEnum.MAC, ...params },
     });
     return data;
@@ -29,14 +24,14 @@ export class ProductApi {
   static async findAllIphone(
     params?: Omit<FindAllProductsReqQuery, 'category'>
   ) {
-    const { data } = await get<IPhoneProduct[]>('/product', {
+    const { data } = await get<GetProductResDto[]>('/product', {
       params: { category: ProductCategoryEnum.IPHONE, ...params },
     });
     return data;
   }
 
   static async findAllIpad(params?: Omit<FindAllProductsReqQuery, 'category'>) {
-    const { data } = await get<IPadProduct[]>('/product', {
+    const { data } = await get<GetProductResDto[]>('/product', {
       params: { category: ProductCategoryEnum.IPAD, ...params },
     });
     return data;
