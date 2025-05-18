@@ -18,12 +18,22 @@ import CreatePhotoField from './fields/CreatePhotoField';
 import CreateTagsField from './fields/CreateTagsField';
 import { GetProductResDto } from '@/api/product/dto/response/get-product.res.dto';
 import { CreateMacProductReqDto } from '@/api/product/dto/request/create-mac-product.req.dto';
+import { axios } from '@/api/api';
+import { ProductCategoryEnum } from '@/utils/types/product-category.enum';
 
-export default function CreateMacForm() {
+interface Props {
+  host: string;
+}
+export default function CreateMacForm({ host }: Props) {
   const [products, setProducts] = useState<GetProductResDto[]>([]);
 
   useEffect(() => {
-    ProductApi.findAllMac().then(setProducts).catch(console.error);
+    axios
+      .get(`${host}/product`, { params: { category: ProductCategoryEnum.MAC } })
+      .then(({ data }) => {
+        setProducts(data);
+      })
+      .catch(console.error);
   }, []);
 
   const [formData, setFormData] = useState<CreateMacProductReqDto>({

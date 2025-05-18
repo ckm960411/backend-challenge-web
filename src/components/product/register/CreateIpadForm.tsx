@@ -15,12 +15,24 @@ import CreateTagsField from './fields/CreateTagsField';
 import CreateIpadSpecField from './fields/CreateIpadSpecField';
 import CreateIpadOptionField from './fields/CreateIpadOptionField';
 import { GetProductResDto } from '@/api/product/dto/response/get-product.res.dto';
+import { axios } from '@/api/api';
+import { ProductCategoryEnum } from '@/utils/types/product-category.enum';
 
-export default function CreateIpadForm() {
+interface Props {
+  host: string;
+}
+export default function CreateIpadForm({ host }: Props) {
   const [products, setProducts] = useState<GetProductResDto[]>([]);
 
   useEffect(() => {
-    ProductApi.findAllIpad().then(setProducts).catch(console.error);
+    axios
+      .get(`${host}/product`, {
+        params: { category: ProductCategoryEnum.IPAD },
+      })
+      .then(({ data }) => {
+        setProducts(data);
+      })
+      .catch(console.error);
   }, []);
 
   const [formData, setFormData] = useState<CreateIpadProductReqDto>({
