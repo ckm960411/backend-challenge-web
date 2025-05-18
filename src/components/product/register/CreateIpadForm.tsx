@@ -12,7 +12,7 @@ import CreateHeightField from './fields/CreateHeightField';
 import CreateColorField from './fields/CreateColorField';
 import CreatePhotoField from './fields/CreatePhotoField';
 import CreateTagsField from './fields/CreateTagsField';
-import CreateProcessorField from './fields/CreateProcessorField';
+import CreateIpadSpecField from './fields/CreateIpadSpecField';
 import CreateIpadOptionField from './fields/CreateIpadOptionField';
 import { GetProductResDto } from '@/api/product/dto/response/get-product.res.dto';
 
@@ -137,7 +137,7 @@ export default function CreateIpadForm() {
           tagList={Array.from(new Set(products.flatMap((p) => p.tags)))}
         />
         {/* 디스플레이 및 주요 정보 */}
-        <CreateProcessorField
+        <CreateIpadSpecField
           displaySize={formData.displaySize}
           displayHorizontalPixel={formData.displayHorizontalPixel}
           displayVerticalPixel={formData.displayVerticalPixel}

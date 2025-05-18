@@ -16,7 +16,7 @@ interface Props {
   specsList: Spec[][];
 }
 
-export default function CreateProcessorField({
+export default function CreateIpadSpecField({
   displaySize,
   displayHorizontalPixel,
   displayVerticalPixel,
