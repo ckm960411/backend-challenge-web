@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { UserSync } from '@/components/common/UserSync';
 import { baseURL } from '@/api/api';
 import AuthSection from '@/components/AuthSection';
+import RegisterProductButton from '@/components/RegisterProductButton';
 
 async function getUser() {
   const cookieStore = await cookies();
@@ -48,6 +49,8 @@ export default async function Home() {
         </ol>
 
         <AuthSection />
+
+        <RegisterProductButton />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
