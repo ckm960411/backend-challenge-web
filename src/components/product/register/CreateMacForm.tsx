@@ -34,7 +34,7 @@ export default function CreateMacForm({ host }: Props) {
         setProducts(data);
       })
       .catch(console.error);
-  }, []);
+  }, [host]);
 
   const [formData, setFormData] = useState<CreateMacProductReqDto>({
     name: '',

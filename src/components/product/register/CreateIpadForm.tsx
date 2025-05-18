@@ -33,7 +33,7 @@ export default function CreateIpadForm({ host }: Props) {
         setProducts(data);
       })
       .catch(console.error);
-  }, []);
+  }, [host]);
 
   const [formData, setFormData] = useState<CreateIpadProductReqDto>({
     name: '',

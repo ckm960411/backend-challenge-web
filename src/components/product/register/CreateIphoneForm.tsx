@@ -33,7 +33,8 @@ export default function CreateIphoneForm({ host }: Props) {
         setProducts(data);
       })
       .catch(console.error);
-  }, []);
+  }, [host]);
+
   const [formData, setFormData] = useState<CreateIphoneProductReqDto>({
     name: '',
     generation: '',
